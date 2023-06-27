@@ -3,7 +3,7 @@
 	import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 	import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 	// import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution'; // uncomment this line to enable typescript
-	// import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'; // uncomment this line to enable html
+    // import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'; // uncomment this line to enable html
 	import { code } from '$lib/js_code';
 
 	let editorElement: HTMLElement;
@@ -16,12 +16,24 @@
 			value: code,
 			language: 'javascript',
 			theme: 'vs-dark',
-			automaticLayout: true
+            automaticLayout: true,
 		});
 
 		editor.onDidChangeModelContent(() => {
 			dispatch('input', editor.getValue());
 		});
+
+		// use below commented code to resize the editor when the window resizes, if you don't want to use automaticLayout
+        
+        // const handleResize = () => {
+		// 	editor.layout();
+		// };
+
+		// window.addEventListener('resize', handleResize);
+
+		// return () => {
+		// 	window.removeEventListener('resize', handleResize);
+		// };
 	});
 </script>
 
