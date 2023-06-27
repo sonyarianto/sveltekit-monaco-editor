@@ -18,6 +18,10 @@ Then run `npm run dev` to start the dev server.
 - [x] As educational material for SvelteKit.
 - [x] Good as starter template, since several batteries included (Tailwind CSS etc).
 
+## Demo
+
+https://sveltekit-monaco-editor.vercel.app
+
 ## License
 
 MIT
