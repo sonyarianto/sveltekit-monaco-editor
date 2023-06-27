@@ -1,38 +1,24 @@
-# create-svelte
+# sveltekit-monaco-editor
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Simple and quick demo about how to use Monaco Editor in SvelteKit.
 
-## Creating a project
+## Why?
 
-If you're seeing this, you've probably already done this step. Congrats!
+Why not? I am boring looking all sample Monaco Editor in React. I want to see how it works in SvelteKit.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## How to use
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+Clone this repo and run `npm install` to install all dependencies including Monaco Editor.
 
-## Developing
+Then run `npm run dev` to start the dev server.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Use case
 
-```bash
-npm run dev
+- [x] Use Monaco Editor in SvelteKit
+- [x] As educational material for SvelteKit
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## License
 
-## Building
+MIT
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Maintained by Sony Arianto Kurniawan <<sony@sony-ak.com>> and contributors.
