@@ -2,7 +2,7 @@
 	import { onMount, createEventDispatcher } from 'svelte';
 	import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 	import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
-	import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
+	// import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution'; // uncomment this line to enable typescript
 	import { code } from '$lib/js_code';
 
 	let editorElement: HTMLElement;
