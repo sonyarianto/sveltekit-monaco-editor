@@ -2,6 +2,7 @@ export const code = `// Simple demo of Monaco Editor using SvelteKit
 // Best regards,
 // Sony AK <sony@sony-ak.com>
 // Nice isn't it? I hope you like it and find it useful.
+// See you at https://github.com/sonyarianto/sveltekit-monaco-editor
 
 import { onMount, createEventDispatcher } from 'svelte';
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
