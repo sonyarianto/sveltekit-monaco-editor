@@ -14,8 +14,9 @@ Then run `npm run dev` to start the dev server.
 
 ## Use case
 
-- [x] Use Monaco Editor in SvelteKit
-- [x] As educational material for SvelteKit
+- [x] Use Monaco Editor in SvelteKit.
+- [x] As educational material for SvelteKit.
+- [x] Good as starter template, since several batteries included (Tailwind CSS etc).
 
 ## License
 
