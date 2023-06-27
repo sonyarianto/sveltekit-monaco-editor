@@ -3,7 +3,7 @@
 	import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 	import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 	import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
-	import { tsCode } from '$lib/ts_code';
+	import { code } from '$lib/js_code';
 
 	let editorElement: HTMLElement;
 	let editor: monaco.editor.IStandaloneCodeEditor;
@@ -12,8 +12,8 @@
 
 	onMount(() => {
 		editor = monaco.editor.create(editorElement, {
-			value: tsCode,
-			language: 'typescript',
+			value: code,
+			language: 'javascript',
 			theme: 'vs-dark'
 		});
 

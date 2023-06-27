@@ -1,4 +1,4 @@
-export const tsCode = `// Simple demo of Monaco Editor using SvelteKit
+export const code = `// Simple demo of Monaco Editor using SvelteKit
 // Best regards,
 // Sony AK <sony@sony-ak.com>
 // Nice isn't it? I hope you like it and find it useful.
@@ -8,8 +8,8 @@ import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
 import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
 import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
 
-let editorElement: HTMLElement;
-let editor: monaco.editor.IStandaloneCodeEditor;
+let editorElement;
+let editor;
 
 const dispatch = createEventDispatcher();
 
