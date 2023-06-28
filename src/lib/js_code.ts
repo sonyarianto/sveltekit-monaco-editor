@@ -1,28 +1,23 @@
 export const code = `// Simple demo of Monaco Editor using SvelteKit
-// Best regards,
-// Sony AK <sony@sony-ak.com>
 // Nice isn't it? I hope you like it and find it useful.
 // See you at https://github.com/sonyarianto/sveltekit-monaco-editor
 
-import { onMount, createEventDispatcher } from 'svelte';
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
-// import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution';
+function getFullName(first, last) {
+    return first + " " + last;
+}
 
-let editorElement;
-let editor;
+getFullName("Sony", "AK"); // Sony AK
 
-const dispatch = createEventDispatcher();
+// Demo of Closure as Factory Function
 
-onMount(() => {
-    editor = monaco.editor.create(editorElement, {
-        value: 'console.log("I am the Monaco Editor");',
-        language: 'javascript',
-        theme: 'vs-dark',
-        automaticLayout: true,
-    });
+function makeAdder(x) {
+    return function (y) {
+        return x + y;
+    };
+}
 
-    editor.onDidChangeModelContent(() => {
-        dispatch('input', editor.getValue());
-    });
-});`;
+const add5 = makeAdder(5); // 5 is x
+const add10 = makeAdder(10); // 10 is x
+
+console.log(add5(2)); // 7
+console.log(add10(2)); // 12`;

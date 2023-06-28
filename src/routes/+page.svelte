@@ -1,40 +1,55 @@
 <script lang="ts">
-	import { onMount, createEventDispatcher } from 'svelte';
-	import * as monaco from 'monaco-editor/esm/vs/editor/editor.api';
-	import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution';
-	// import 'monaco-editor/esm/vs/basic-languages/typescript/typescript.contribution'; // uncomment this line to enable typescript
-    // import 'monaco-editor/esm/vs/basic-languages/html/html.contribution'; // uncomment this line to enable html
-	import { code } from '$lib/js_code';
+	import loader from '@monaco-editor/loader';
+	import { onDestroy, onMount } from 'svelte';
+	import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
+	import { code as jsCode } from '$lib/js_code';
+	import { code as tsCode } from '$lib/ts_code';
+	import { code as phpCode } from '$lib/php_code';
+	import { code as pyCode } from '$lib/py_code';
 
-	let editorElement: HTMLElement;
-	let editor: monaco.editor.IStandaloneCodeEditor;
+	let editor: Monaco.editor.IStandaloneCodeEditor;
+	let monaco: typeof Monaco;
+	let editorContainer: HTMLElement;
+	let model: Monaco.editor.ITextModel;
 
-	const dispatch = createEventDispatcher();
+	function loadCode(code: string, language: string) {
+		model = monaco.editor.createModel(code, language);
 
-	onMount(() => {
-		editor = monaco.editor.create(editorElement, {
-			value: code,
-			language: 'javascript',
+		editor.setModel(model);
+	}
+
+	onMount(async () => {
+		// Remove the next two lines to load the monaco editor from a CDN
+		// see https://www.npmjs.com/package/@monaco-editor/loader#config
+
+		const monacoEditor = await import('monaco-editor');
+		loader.config({ monaco: monacoEditor.default });
+
+		monaco = await loader.init(); // monaco is now available
+
+		editor = monaco.editor.create(editorContainer, {
 			theme: 'vs-dark',
-            automaticLayout: true,
+			automaticLayout: true
 		});
 
-		editor.onDidChangeModelContent(() => {
-			dispatch('input', editor.getValue());
-		});
+		loadCode(jsCode, 'javascript');
+	});
 
-		// use below commented code to resize the editor when the window resizes, if you don't want to use automaticLayout
-        
-        // const handleResize = () => {
-		// 	editor.layout();
-		// };
-
-		// window.addEventListener('resize', handleResize);
-
-		// return () => {
-		// 	window.removeEventListener('resize', handleResize);
-		// };
+	onDestroy(() => {
+		monaco?.editor.getModels().forEach((model) => model.dispose());
 	});
 </script>
 
-<div bind:this={editorElement} class="h-screen w-full" />
+<div class="h-screen flex flex-col w-full">
+	<div class="flex gap-x-1 p-1">
+		<button class="w-fit border-2 p-1" on:click={() => loadCode(jsCode, 'javascript')}
+			>JavaScript</button
+		>
+		<button class="w-fit border-2 p-1" on:click={() => loadCode(tsCode, 'typescript')}
+			>TypeScript</button
+		>
+		<button class="w-fit border-2 p-1" on:click={() => loadCode(phpCode, 'php')}>PHP</button>
+		<button class="w-fit border-2 p-1" on:click={() => loadCode(pyCode, 'python')}>Python</button>
+	</div>
+	<div class="flex-grow" bind:this={editorContainer} />
+</div>
