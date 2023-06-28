@@ -41,7 +41,7 @@
 	});
 </script>
 
-<div class="h-screen flex flex-col w-full">
+<div class="flex h-screen w-full flex-col">
 	<div class="flex gap-x-1 p-1">
 		<button class="w-fit border-2 p-1" on:click={() => loadCode(jsCode, 'javascript')}
 			>JavaScript</button
