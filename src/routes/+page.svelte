@@ -6,6 +6,7 @@
 	import { code as tsCode } from '$lib/ts_code';
 	import { code as phpCode } from '$lib/php_code';
 	import { code as pyCode } from '$lib/py_code';
+	import { code as htmlCode } from '$lib/html_code';
 
 	let editor: Monaco.editor.IStandaloneCodeEditor;
 	let monaco: typeof Monaco;
@@ -50,6 +51,7 @@
 		>
 		<button class="w-fit border-2 p-1" on:click={() => loadCode(phpCode, 'php')}>PHP</button>
 		<button class="w-fit border-2 p-1" on:click={() => loadCode(pyCode, 'python')}>Python</button>
+		<button class="w-fit border-2 p-1" on:click={() => loadCode(htmlCode, 'html')}>HTML</button>
 	</div>
 	<div class="flex-grow" bind:this={editorContainer} />
 </div>
