@@ -24,6 +24,11 @@ Then run `npm run dev` to start the dev server.
 
 https://sveltekit-monaco-editor.vercel.app
 
+## References
+- https://dev.to/lawrencecchen/monaco-editor-svelte-kit-572
+- https://www.codelantis.com/blog/sveltekit-monaco-editor
+- and many others
+
 ## License
 
 MIT
