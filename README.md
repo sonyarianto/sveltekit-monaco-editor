@@ -2,8 +2,6 @@
 
 Simple and quick demo about how to use Monaco Editor in SvelteKit.
 
-<img src="https://github.com/sonyarianto/sveltekit-monaco-editor/blob/main/sveltekit-monaco-editor.jpg" />
-
 ## Why?
 
 Why not? I am boring looking all sample Monaco Editor in React. I want to see how it works in SvelteKit.
