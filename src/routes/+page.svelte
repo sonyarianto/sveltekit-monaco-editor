@@ -43,7 +43,7 @@
 		};
 
 		monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true);
-		
+
 		editor = monaco.editor.create(editorElement, {
 			automaticLayout: true,
 			theme: 'vs-dark'
