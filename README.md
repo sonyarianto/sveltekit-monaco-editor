@@ -26,6 +26,7 @@ https://sveltekit-monaco-editor.vercel.app
 
 - https://dev.to/lawrencecchen/monaco-editor-svelte-kit-572
 - https://www.codelantis.com/blog/sveltekit-monaco-editor
+- https://github.com/microsoft/monaco-editor/blob/main/samples/browser-esm-vite-react/src/main.tsx (I like this)
 - and many others
 
 ## License
