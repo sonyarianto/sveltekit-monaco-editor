@@ -1,17 +1,21 @@
 <script lang="ts">
-	import loader from '@monaco-editor/loader';
 	import { onDestroy, onMount } from 'svelte';
-	import type * as Monaco from 'monaco-editor/esm/vs/editor/editor.api';
+	import * as monaco from 'monaco-editor';
+	import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker';
+	import jsonWorker from 'monaco-editor/esm/vs/language/json/json.worker?worker';
+	import cssWorker from 'monaco-editor/esm/vs/language/css/css.worker?worker';
+	import htmlWorker from 'monaco-editor/esm/vs/language/html/html.worker?worker';
+	import tsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
+
 	import { code as jsCode } from '$lib/js_code';
 	import { code as tsCode } from '$lib/ts_code';
 	import { code as phpCode } from '$lib/php_code';
 	import { code as pyCode } from '$lib/py_code';
 	import { code as htmlCode } from '$lib/html_code';
 
-	let editor: Monaco.editor.IStandaloneCodeEditor;
-	let monaco: typeof Monaco;
-	let editorContainer: HTMLElement;
-	let model: Monaco.editor.ITextModel;
+	let editorElement: HTMLDivElement;
+	let editor: monaco.editor.IStandaloneCodeEditor;
+	let model: monaco.editor.ITextModel;
 
 	function loadCode(code: string, language: string) {
 		model = monaco.editor.createModel(code, language);
@@ -20,17 +24,29 @@
 	}
 
 	onMount(async () => {
-		// Remove the next two lines to load the monaco editor from a CDN
-		// see https://www.npmjs.com/package/@monaco-editor/loader#config
+		self.MonacoEnvironment = {
+			getWorker: function (_: any, label: string) {
+				if (label === 'json') {
+					return new jsonWorker();
+				}
+				if (label === 'css' || label === 'scss' || label === 'less') {
+					return new cssWorker();
+				}
+				if (label === 'html' || label === 'handlebars' || label === 'razor') {
+					return new htmlWorker();
+				}
+				if (label === 'typescript' || label === 'javascript') {
+					return new tsWorker();
+				}
+				return new editorWorker();
+			}
+		};
 
-		const monacoEditor = await import('monaco-editor');
-		loader.config({ monaco: monacoEditor.default });
-
-		monaco = await loader.init(); // monaco is now available
-
-		editor = monaco.editor.create(editorContainer, {
-			theme: 'vs-dark',
-			automaticLayout: true
+		monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true);
+		
+		editor = monaco.editor.create(editorElement, {
+			automaticLayout: true,
+			theme: 'vs-dark'
 		});
 
 		loadCode(jsCode, 'javascript');
@@ -53,5 +69,5 @@
 		<button class="w-fit border-2 p-1" on:click={() => loadCode(pyCode, 'python')}>Python</button>
 		<button class="w-fit border-2 p-1" on:click={() => loadCode(htmlCode, 'html')}>HTML</button>
 	</div>
-	<div class="flex-grow" bind:this={editorContainer} />
+	<div class="flex-grow" bind:this={editorElement} />
 </div>
